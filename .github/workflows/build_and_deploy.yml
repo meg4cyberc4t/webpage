@@ -47,17 +47,14 @@ jobs:
       - name: build
         run: flutter build web
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
-        with:
-          path: 'build/web'
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build/web
-          force_orphan: true
-          user_name: 'github-ci[bot]'
-          user_email: 'github-actions[bot]@users.noreply.github.com'
-          commit_message: 'Publish to gh-pages'
+      - run: |
+            cd build/web
+            git init
+            git config --global user.email github-actions[bot]@users.noreply.github.com
+            git config --global user.name github-ci[bot]
+            git status
+            git remote add origin https://${{secrets.TOKEN}}@github.com/meg4cyberc4t/webpage.git
+            git checkout -b gh-pages
+            git add --all
+            git commit -m "Deploy to pages"
+            git push origin gh-pages -f
