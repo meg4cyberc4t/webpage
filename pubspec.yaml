@@ -26,6 +26,7 @@ dev_dependencies:
   flutter_lints: ^3.0.0
   build_runner: ^2.4.6
   freezed: ^2.4.5
+  flutter_launcher_icons: ^0.13.1
 
 flutter:
   uses-material-design: true
@@ -33,3 +34,10 @@ flutter:
     - assets/images/
   shaders:
     - assets/shaders/background.glsl
+
+flutter_launcher_icons:
+  web:
+    generate: true
+    image_path: "assets/images/logo.png"
+    background_color: "#FFFFFFFF"
+    # theme_color: "#hexcode"
